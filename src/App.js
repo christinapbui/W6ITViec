@@ -36,7 +36,8 @@ function App() {
   };
 
   const getJobsList = async() => {
-    let url = `http://localhost:3001/jobs/`
+    // let url = `http://localhost:3001/jobs/`
+    let url = `https://my-json-server.typicode.com/christinapbui/W6ITViec/jobs`
     let data = await fetch(url)
     let result = await data.json()
     // setJobsList(result)
