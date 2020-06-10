@@ -10,46 +10,25 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export default function Jobs() {
-    let [jobs,setJobs] = useState([])
-    let query = useQuery();
-    let [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
+export default function Jobs(props) {
 
-    const getJobsList = async() => {
-        let url = `http://localhost:3001/jobs/`
-        let data = await fetch(url)
-        let result = await data.json()
-        setJobs(result)
-        console.log("show results", result)
+
+    if (props.jobsListProps == null) {
+        return <div>Loading</div>
     }
-
-    const handleSearch = (e) => {
-        let filteredJobs = originalJobs;
-        if (e) {
-            e.preventDefault();
-            history.push(`/jobs/?${QUERYSTR_PREFIX}=${encodeURIComponent(keyword)}`);
-        }
-        if (keyword) {
-            filteredJobs = originalJobs.filter(job =>
-            job.title.toLowerCase().includes(keyword.toLowerCase())
-            );
-        }
-        setJobs(filteredJobs);
-    };
-
-
-    useEffect(()=>{
-        getJobsList();
-    },[])
-
-    useEffect(() => {
-        handleSearch();
-      }, [originalJobs]);
 
 
     return (
+        <>
+        {console.log("here",props.jobsListProps)}
+        {/* <Container>
+            {jobsList.map(item => {
+                return <h2>{item.title}</h2>
+            })}
+        </Container> */}
         <Container className="jobs-list">
-            {jobs && jobs.map(item => <JobCard job={item} key={item.id} />)}
+            {props.jobsListProps && props.jobsListProps.map(item => <JobCard job={item} key={item.id} />)}
         </Container>
+        </>
     )
 }

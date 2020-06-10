@@ -7,13 +7,11 @@ export default function DetailsCard(props) {
         return <div>loading</div>
     }
     return (
-        <Container>
-            <Col className="jobcard-logo-col-detailspage">
-              <div className="jobcard-logo">
+        <Container className="detailscard-container">
+              <div>
                 <img src={props.job.img} />
               </div>
-            </Col>
-            <Col>
+            <Col className="detailscard-description-col">
               <div className="jobcard-descriptions">
                 <h2 className="jobcard-title"><a href="#">{props.job.title}</a></h2>
                 <div>$ {props.job.salary}</div>

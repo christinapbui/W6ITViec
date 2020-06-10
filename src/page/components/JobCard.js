@@ -23,7 +23,7 @@ export default function JobCard(props) {
             <Col xs={8}>
               <div className="jobcard-descriptions">
                 <h2 className="jobcard-title">{props.job.title}</h2>
-                <div>$ {props.job.salary}</div>
+                <div>${props.job.salary}</div>
                 <div>
                   <ul className="benefit-list">
                     {props.job.benefits.map(benefit => (
