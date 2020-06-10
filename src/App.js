@@ -26,6 +26,7 @@ function App() {
   let tempArray = [] // this is not a state; using this because it's not the originalList (it takes a long time to fire)
   let filteredList = []
   let dispatch = useDispatch()
+  const REACT_APP_BACKEND_SERVER_URL = process.env.REACT_APP_BACKEND_SERVER_URL
 
   const ProtectedRoute = (props) => {
     if (user.isAuthenticated === false) {
@@ -37,7 +38,7 @@ function App() {
 
   const getJobsList = async() => {
     // let url = `http://localhost:3001/jobs/`
-    let url = `https://my-json-server.typicode.com/christinapbui/W6ITViec/jobs`
+    let url = REACT_APP_BACKEND_SERVER_URL
     let data = await fetch(url)
     let result = await data.json()
     // setJobsList(result)
